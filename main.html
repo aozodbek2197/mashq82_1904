@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>32. Countdown Timer</title>
+  <style>
+    body { font-family: Arial; text-align: center; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 50px; }
+    .timer { display: flex; justify-content: center; gap: 30px; font-size: 48px; margin: 40px 0; }
+    .box { background: rgba(255,255,255,0.2); padding: 20px 30px; border-radius: 15px; }
+  </style>
+</head>
+<body>
+  <h1>Yangi yilgacha qolgan vaqt</h1>
+  <div class="timer" id="timer">
+    <div class="box"><span id="days">00</span><br><small>Kun</small></div>
+    <div class="box"><span id="hours">00</span><br><small>Soat</small></div>
+    <div class="box"><span id="minutes">00</span><br><small>Daqiqa</small></div>
+    <div class="box"><span id="seconds">00</span><br><small>Soniya</small></div>
+  </div>
+
+  <script>
+    function countdown() {
+      const targetDate = new Date("2027-01-01T00:00:00").getTime();
+      
+      setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = String(days).padStart(2, '0');
+        document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+        document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+        document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+      }, 1000);
+    }
+
+    countdown();
+  </script>
+</body>
+</html>
